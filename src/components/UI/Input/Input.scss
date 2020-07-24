@@ -1,0 +1,37 @@
+.input-field {
+	width: 100%;
+	position: relative;
+
+	&__placeholder {
+		position: absolute;
+		top: 50%;
+		left: 25px;
+		transform: translateY(-50%);
+		color: #ACACAC;
+		pointer-events: none;
+		transition: all .2s;
+
+		&_active {
+			top: 2px;
+			transform: none;
+			font-size: 14px;
+		}
+	}
+}
+
+.input {
+	display: block;
+	color: #333333;
+	width: 100%;
+	padding: 22.5px 25px 10.5px;
+	border-radius: 16px;
+	font-size: 18px;
+	box-shadow: 0px 4px 64px rgba(0, 0, 0, 0.08);
+	border: 2px solid transparent;
+	transition: border .2s;
+
+	&:focus {
+		border: 2px solid rgba(71, 145, 255, 0.32);
+		box-shadow: 0px 4px 64px rgba(71, 145, 255, 0.08);
+	}
+}
