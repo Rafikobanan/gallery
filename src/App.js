@@ -1,10 +1,14 @@
 import React from 'react';
-import './App.css';
+import Layout from './hoc/Layout/Layout';
+import Loading from './components/Loading/Loading';
+import Gallery from './components/Gallery/Gallery';
 
 function App() {
   return (
-    <div className="gallery">
-    </div>
+		<Layout>
+			<Loading />
+			<Gallery />
+		</Layout>
   );
 }
 
