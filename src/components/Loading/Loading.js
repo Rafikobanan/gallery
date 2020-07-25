@@ -1,25 +1,13 @@
 import React, { useContext, useState } from 'react';
 import './Loading.scss';
 import Input from '../UI/Input/Input';
-import { toast } from 'react-toastify';
 import { Context } from '../../context/context';
 import { ADD_SOME_PICTURES, ADD_PICTURE } from '../../reducer/types';
+import { notify } from '../../utils/notify';
 
 function Loading() {
 	const {dispatch} = useContext(Context);
 	const [value, setValue] = useState('');
-
-	const notify = (text) => {
-		toast.error(text, {
-			position: 'top-right',
-			autoClose: 3000,
-			hideProgressBar: false,
-			closeOnClick: true,
-			pauseOnHover: true,
-			draggable: true,
-			progress: undefined,
-		});
-	};
 
 	const changeFileHandler = (input) => {
 		let file = input.files[0];

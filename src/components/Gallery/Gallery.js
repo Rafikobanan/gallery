@@ -4,7 +4,7 @@ import Image from '../Image/Image';
 import { Context } from '../../context/context';
 import useEventListener from '../../hooks/event.hook';
 import Icon from '../Icon/Icon';
-import { REMOVE_IMAGE, ADD_PICTURE_SIZE, ADD_PICTURE, SET_BIG_IMAGE_URL } from '../../reducer/types';
+import { REMOVE_IMAGE, ADD_PICTURE_SIZE, SET_BIG_IMAGE_URL } from '../../reducer/types';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const k = {
@@ -67,47 +67,6 @@ function Gallery() {
 		resizeHandler();
 	});
 
-	useEffect(() => {
-		const preventDefaults = (e) => {
-			e.preventDefault();
-			e.stopPropagation();
-		};
-
-		const handleDrop = (e) => {
-			const dt = e.dataTransfer;
-			const files = [...dt.files];
-
-			files.forEach((file) => {
-				const reader = new FileReader();
-				reader.readAsDataURL(file);
-
-				const id = Math.random();
-				dispatch({type: ADD_PICTURE, payload: {url: 'placeholder', id}});
-
-				reader.onloadend = function() {
-					dispatch({type: REMOVE_IMAGE, payload: id});
-					dispatch({type: ADD_PICTURE, payload: reader.result});
-				};
-			});
-		};
-
-		const events = ['dragenter', 'dragover', 'dragleave', 'drop'];
-
-		events.forEach(eventName => {
-			document.body.addEventListener(eventName, preventDefaults);
-			document.body.addEventListener('drop', handleDrop);
-		});
-
-		return () => {
-			events.forEach(eventName => {
-				document.body.removeEventListener(eventName, preventDefaults);
-				document.body.removeEventListener('drop', handleDrop);
-			});
-		}
-	// eslint-disable-next-line
-	}, []);
-
-
 	const images = state.images.map((item, index) => {
 		let widthInPercent = item.width / item.height * 20 * coefficient;
 
@@ -146,7 +105,7 @@ function Gallery() {
 			</TransitionGroup>
 
 			{images.length === 0 ? 
-				<div className="empty">Добавьте картинки</div> :
+				<div className="empty"><span>Здесь будут ваши картинки</span></div> :
 				''
 			}
 		</>
