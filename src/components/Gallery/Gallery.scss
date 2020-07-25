@@ -39,7 +39,14 @@
 }
 
 .empty {
-	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 2px dashed #DCDCDC;
+	border-radius: 16px;
+	color: #ACACAC;
+	height: 450px;
+	margin-bottom: 5px;
 }
 
 .item-enter {

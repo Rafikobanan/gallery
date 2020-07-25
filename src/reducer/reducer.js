@@ -1,5 +1,4 @@
-import { __INIT__, ADD_SOME_PICTURES, REMOVE_IMAGE, ADD_PICTURE, ADD_PICTURE_SIZE, REMOVE_BIG_IMAGE_URL, SET_BIG_IMAGE_URL } from "./types";
-import storage from "../storage/storage";
+import { ADD_SOME_PICTURES, REMOVE_IMAGE, ADD_PICTURE, ADD_PICTURE_SIZE, REMOVE_BIG_IMAGE_URL, SET_BIG_IMAGE_URL } from "./types";
 
 function id() {
 	return '_' + Math.random().toString(36).substr(2, 9);
@@ -9,12 +8,6 @@ export default function(state, action) {
 	let {images} = state;
 
 	switch (action.type) {
-		case __INIT__:
-			return {
-				...state,
-				...storage()
-			};
-
 		case ADD_SOME_PICTURES:
 			const arr = action.payload;
 
