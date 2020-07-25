@@ -1,5 +1,15 @@
+.loader {
+	position: relative;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	border: 2px dashed #DCDCDC;
+	border-radius: 16px;
+	padding: 10px;
+	margin: 5px;
+}
+
 .lds-dual-ring {
-  display: inline-block;
   width: 80px;
   height: 80px;
 }

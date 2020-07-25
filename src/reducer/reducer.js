@@ -27,7 +27,7 @@ export default function(state, action) {
 				width: null,
 				height: null,
 				id: action.payload.id || id(),
-				url: action.payload,
+				url: action.payload.url,
 			};
 
 			images.push(imageObj);

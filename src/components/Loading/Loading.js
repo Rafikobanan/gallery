@@ -55,7 +55,7 @@ function Loading() {
 				return;
 			}
 			setValue('');
-			dispatch({type: ADD_PICTURE, payload: value});
+			dispatch({type: ADD_PICTURE, payload: {url: value}});
 		}
 	};
 
