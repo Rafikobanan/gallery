@@ -9,32 +9,35 @@ function Image({
 	children = null,
 	onLoad = null,
 	onClick = null,
-	withLoader = true
 }) {
-	const [isLoad, setIsLoad] = useState(withLoader);
+	const [isLoad, setIsLoad] = useState(true);
 
 	const loadHandler = (e) => {
-		if (!withLoader) return;
 		setIsLoad(false);
 		if (onLoad) onLoad(e);
 	};
 
 	return (
 		<>
-			<div
-				onClick={onClick}
-				className={`image-container ${className}`}
-				style={{cursor: `${onClick ? 'pointer' : ''}`, ...style}}
-			>
+			{isLoad ? (
+				<>
+					<Loader className={className} children={children}/>
+					<img onLoad={loadHandler} className="image-load" src={src} alt=""/>
+				</>
+			) : 
 				<div
-					className="image"
-					style={{backgroundImage: `url(${src})`}}
+					onClick={onClick}
+					className={`image-container ${className}`}
+					style={{cursor: `${onClick ? 'pointer' : ''}`, ...style}}
 				>
-					<img onLoad={loadHandler} className={`${isLoad ? 'image__load' : 'image__hidden'}`} src={src} alt=""/>
-					{children}
-					{isLoad ? <Loader/> : ''}
+					<div
+						className="image"
+						style={{backgroundImage: `url(${src})`}}
+					>
+						{children}
+					</div>
 				</div>
-			</div>
+				}
 		</>
 	);
 }

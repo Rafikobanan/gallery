@@ -6,7 +6,7 @@ import reducer from './reducer/reducer';
 import { Context } from './context/context';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { REMOVE_BIG_IMAGE_URL, ADD_PICTURE, REMOVE_IMAGE } from './reducer/types';
+import { REMOVE_BIG_IMAGE_URL, ADD_PICTURE } from './reducer/types';
 import Magnify from './components/Magnify/Magnify';
 
 function App() {
@@ -30,12 +30,8 @@ function App() {
 					const reader = new FileReader();
 					reader.readAsDataURL(file);
 
-					const id = Math.random();
-					dispatch({type: ADD_PICTURE, payload: {url: 'placeholder', id}});
-
 					reader.onloadend = function() {
-						dispatch({type: REMOVE_IMAGE, payload: id});
-						dispatch({type: ADD_PICTURE, payload: reader.result});
+						dispatch({type: ADD_PICTURE, payload: {url: reader.result}});
 						res();
 					};
 

@@ -70,7 +70,7 @@ function Gallery() {
 	const images = state.images.map((item, index) => {
 		let widthInPercent = item.width / item.height * 20 * coefficient;
 
-		if (!widthInPercent) widthInPercent = 0;
+		if (!widthInPercent || widthInPercent === Infinity) widthInPercent = 0;
 
 		return (
 			<CSSTransition
