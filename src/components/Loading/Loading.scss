@@ -23,3 +23,14 @@
 		z-index: -1;
 	}
 }
+
+@media (max-width: 425px) {
+	.loading {
+		display: block;
+
+		&__label {
+			display: block;
+			margin: 10px 0 0;
+		}
+	}
+}

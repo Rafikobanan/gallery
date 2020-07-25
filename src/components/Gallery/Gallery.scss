@@ -1,9 +1,58 @@
+.image-hover {
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	transition: opacity .2s;
+	z-index: 2;
+
+	&__icon {
+		position: absolute;
+		cursor: pointer;
+		width: 30px;
+		height: 30px;
+	}
+
+	&__close {
+		top: 3px;
+		right: 3px;
+		fill: #e12c31;
+	}
+}
+
 .gallery {
 	display: flex;
 	flex-wrap: wrap;
 	margin: 21px -5px 0;
 
-	&__image {
-		margin: 5px;
+	&__image-container {
+		padding: 5px;
+
+		&:hover {
+			.image-hover {
+				opacity: 1;
+			}
+		}
 	}
+}
+
+.empty {
+	text-align: center;
+}
+
+.item-enter {
+  opacity: 0;
+}
+.item-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+.item-exit {
+  opacity: 1;
+}
+.item-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-in;
 }

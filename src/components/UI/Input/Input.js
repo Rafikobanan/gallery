@@ -1,21 +1,14 @@
 import React, { useState } from 'react';
 import './Input.scss';
 
-function Input({className = null, onChange = null, placeholder = null}) {
+function Input({className = null, onChange = null, placeholder = null, onKeyDown = null, value = null}) {
 	const [isPlaceholderActive, setIsPlaceholderActive] = useState(false);
-	const [inputValue, setInputValue] = useState('');
-
-	const cls = [
-		'input'
-	];
-
-	if (className) cls.push(className);
 
 	const placeholderCls = [
 		'input-field__placeholder'
 	];
 
-	if (isPlaceholderActive || inputValue) placeholderCls.push('input-field__placeholder_active');
+	if (isPlaceholderActive || value) placeholderCls.push('input-field__placeholder_active');
 
 	const focusHandler = () => {
 		setIsPlaceholderActive(true);
@@ -25,19 +18,15 @@ function Input({className = null, onChange = null, placeholder = null}) {
 		setIsPlaceholderActive(false);
 	};
 
-	const changeHandler = (e) => { // временно, потом удалить
-		if (onChange) onChange();
-		setInputValue(e.target.value)
-	};
-
 	return (
 		<div className="input-field">
 			<input
-				className={cls.join(' ')}
-				onChange={changeHandler}
+				className={`input ${className}`}
+				onChange={onChange}
+				onKeyDown={onKeyDown}
 				onFocus={focusHandler}
 				onBlur={blurHandler}
-				value={inputValue}
+				value={value}
 				type="text"
 			/>
 			<span className={placeholderCls.join(' ')}>{placeholder}</span>
