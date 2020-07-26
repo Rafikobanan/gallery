@@ -1,9 +1,8 @@
 import React, { useContext, useState } from 'react';
-import './Loading.scss';
-import Input from '../UI/Input/Input';
+import RenderLoading from './RenderLoading';
 import { Context } from '../../context/context';
-import { ADD_SOME_PICTURES, ADD_PICTURE } from '../../reducer/types';
 import { notify } from '../../utils/notify';
+import { ADD_SOME_PICTURES, ADD_PICTURE } from '../../reducer/types';
 
 function Loading() {
 	const {dispatch} = useContext(Context);
@@ -64,22 +63,12 @@ function Loading() {
 	};
 
 	return (
-		<div className="loading">
-			<Input 
-				className="loading__input"
-				placeholder="Вставьте ссылку"
-				onKeyDown={keyDownHandler}
-				onChange={changeInputHandler}
-				value={value}
-			/>
-			<label htmlFor="upload" className="loading__label">Загрузить</label>
-			<input
-				type="file"
-				className="loading__upload"
-				id="upload"
-				onChange={(e) => changeFileHandler(e.target)}
-			/>
-		</div>
+		<RenderLoading 
+			onKeyDown={keyDownHandler}
+			onChangeTextInput={changeInputHandler}
+			onChangeFileInput={(e) => changeFileHandler(e.target)}
+			value={value}
+		/>
 	);
 }
 

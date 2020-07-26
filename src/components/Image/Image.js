@@ -1,45 +1,29 @@
 import React, { useState } from 'react';
-import './Image.scss';
-import Loader from '../Loader/Loader';
+import ImageLoad from './ImageLoad';
+import RenderImage from './RenderImage';
 
-function Image({
-	className = '',
-	src = null,
-	style = null,
-	children = null,
-	onLoad = null,
-	onClick = null,
-}) {
+function Image(props) {
 	const [isLoad, setIsLoad] = useState(true);
 
 	const loadHandler = (e) => {
 		setIsLoad(false);
-		if (onLoad) onLoad(e);
+		if (props.onLoad) props.onLoad(e);
 	};
 
-	return (
-		<>
-			{isLoad ? (
-				<>
-					<Loader className={className} children={children}/>
-					<img onLoad={loadHandler} className="image-load" src={src} alt=""/>
-				</>
-			) : 
-				<div
-					onClick={onClick}
-					className={`image-container ${className}`}
-					style={{cursor: `${onClick ? 'pointer' : ''}`, ...style}}
-				>
-					<div
-						className="image"
-						style={{backgroundImage: `url(${src})`}}
-					>
-						{children}
-					</div>
-				</div>
-				}
-		</>
-	);
+	return isLoad ? 
+		<ImageLoad
+			className={props.className}
+			children={props.children}
+			onLoad={loadHandler}
+			src={props.src}
+		/> :
+		<RenderImage
+			className={props.className}
+			onClick={props.onClick}
+			children={props.children}
+			style={props.style}
+			src={props.src}
+		/>
 }
 
 export default Image;
