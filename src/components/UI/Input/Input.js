@@ -1,37 +1,30 @@
 import React, { useState } from 'react';
-import './Input.scss';
+import RenderInput from './RenderInput';
 
-function Input({className = null, onChange = null, placeholder = null, onKeyDown = null, value = null}) {
+function Input(props) {
 	const [isPlaceholderActive, setIsPlaceholderActive] = useState(false);
-
-	const placeholderCls = [
-		'input-field__placeholder'
-	];
-
-	if (isPlaceholderActive || value) placeholderCls.push('input-field__placeholder_active');
 
 	const focusHandler = () => {
 		setIsPlaceholderActive(true);
 	};
 
 	const blurHandler = () => {
+		if (props.value) return;
 		setIsPlaceholderActive(false);
 	};
 
 	return (
-		<div className="input-field">
-			<input
-				className={`input ${className}`}
-				onChange={onChange}
-				onKeyDown={onKeyDown}
-				onFocus={focusHandler}
-				onBlur={blurHandler}
-				value={value}
-				type="text"
-			/>
-			<span className={placeholderCls.join(' ')}>{placeholder}</span>
-		</div>
-	)
+		<RenderInput 
+			className={props.className}
+			onChange={props.onChange}
+			placeholder={props.placeholder}
+			onKeyDown={props.onKeyDown}
+			value={props.value}
+			isPlaceholderActive={isPlaceholderActive}
+			onFocus={focusHandler}
+			onBlur={blurHandler}
+		/>
+	);
 }
 
 export default Input;

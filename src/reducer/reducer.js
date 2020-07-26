@@ -1,8 +1,12 @@
-import { ADD_SOME_PICTURES, REMOVE_IMAGE, ADD_PICTURE, ADD_PICTURE_SIZE, REMOVE_BIG_IMAGE_URL, SET_BIG_IMAGE_URL } from "./types";
-
-function id() {
-	return '_' + Math.random().toString(36).substr(2, 9);
-}
+import { 
+	ADD_SOME_PICTURES,
+	REMOVE_IMAGE,
+	ADD_PICTURE,
+	ADD_PICTURE_SIZE,
+	REMOVE_BIG_IMAGE_URL,
+	SET_BIG_IMAGE_URL
+} from "./types";
+import { id } from "../utils/id";
 
 export default function(state, action) {
 	let {images} = state;
