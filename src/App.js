@@ -1,14 +1,21 @@
 import React, { useReducer } from 'react';
-import Layout from './hoc/Layout/Layout';
-import DropZone from './hoc/DropZone/DropZone';
-import Loading from './components/Loading/Loading';
-import Gallery from './components/Gallery/Gallery';
-import Magnify from './components/Magnify/Magnify';
-import reducer from './reducer/reducer';
-import { Context } from './context/context';
+
 import { ToastContainer } from 'react-toastify';
-import { REMOVE_BIG_IMAGE_URL } from './reducer/types';
 import 'react-toastify/dist/ReactToastify.css';
+
+import { Context } from './context/context';
+import reducer from './reducer/reducer';
+import { REMOVE_BIG_IMAGE_URL, ADD_PICTURE } from './reducer/types';
+
+import Layout from './hoc/Layout/Layout';
+
+import Loading from './containers/Loading';
+import Gallery from './containers/Gallery';
+
+import Magnify from './components/Magnify';
+
+import useDropZone from './hooks/dropzone.hook';
+import { handleDrop } from './utils';
 
 function App() {
 	const [state, dispatch] = useReducer(reducer, {
@@ -16,19 +23,23 @@ function App() {
 		images: [],
 	});
 
+	useDropZone((e) => {
+		handleDrop(e, (result) => {
+			dispatch({type: ADD_PICTURE, payload: {url: result}});
+		});
+	});
+
   return (
 		<Context.Provider value={{state, dispatch}}>
-			<DropZone>
-				<Layout>
-					<Loading />
-					<Gallery />
-				</Layout>
-				<Magnify
-					onClick={() => dispatch({type: REMOVE_BIG_IMAGE_URL})}
-					src={state.bigImageUrl}
-				/>
-				<ToastContainer />
-			</DropZone>
+			<Layout>
+				<Loading />
+				<Gallery />
+			</Layout>
+			<Magnify
+				onClick={() => dispatch({type: REMOVE_BIG_IMAGE_URL})}
+				src={state.bigImageUrl}
+			/>
+			<ToastContainer />
 		</Context.Provider>
   );
 }

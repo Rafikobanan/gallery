@@ -6,9 +6,11 @@ const RenderImage = ({
 	onClick = null,
 	children = null,
 	style = {},
-	src = ''
+	src = '',
+	...rest
 }) => (
 	<div
+		{...rest}
 		onClick={onClick}
 		className={`image-container ${className}`}
 		style={{cursor: `${onClick ? 'pointer' : ''}`, ...style}}

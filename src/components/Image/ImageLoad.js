@@ -1,15 +1,14 @@
 import React from 'react';
-import Loader from '../Loader/Loader';
+import Loader from '../Loader';
 
 const ImageLoad = ({
 	className = '',
 	children = null,
-	onLoad = null,
-	src = '',
+	...rest
 }) => (
 	<>
 		<Loader className={className} children={children}/>
-		<img onLoad={onLoad} className="image-load" src={src} alt=""/>
+		<img {...rest} className="image-load" alt=""/>
 	</>
 );
 

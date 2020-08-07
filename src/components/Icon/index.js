@@ -1,8 +1,8 @@
 import React from 'react';
 
-function Icon({onClick = null, className = null, style = null, icon}) {
+const Icon = ({className = null, style = null, icon, ...rest}) => {
 	return (
-		<div onClick={onClick}>
+		<div {...rest}>
 			<svg className={className} style={style}>
 				<use xlinkHref={icon}></use>
 			</svg>

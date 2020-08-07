@@ -1,0 +1,30 @@
+.gallery {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 21px -5px 0;
+
+	&__image-container {
+		padding: 5px;
+	
+		&:hover {
+			.image-hover {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+.item-enter {
+  opacity: 0;
+}
+.item-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+.item-exit {
+  opacity: 1;
+}
+.item-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-in;
+}

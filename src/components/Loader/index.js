@@ -1,9 +1,9 @@
 import React from 'react';
 import './Loader.scss';
 
-function Loader({children = null, className = ''}) {
+const Loader = ({children = null, className = '', ...rest}) => {
 	return (
-		<div className={`loader ${className}`}>
+		<div {...rest} className={`loader ${className}`}>
 			<div className="lds-dual-ring"></div>
 			{children}
 		</div>

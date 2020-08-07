@@ -1,20 +1,18 @@
 import React from 'react';
-import Input from '../UI/Input/Input';
+import Input from '../../components/Input';
 import './Loading.scss';
 
 const RenderLoading = ({
-	onKeyDown = null,
 	onChangeTextInput = null,
 	onChangeFileInput = null,
-	value = '',
+	...rest
 }) => (
 	<div className="loading">
-		<Input 
+		<Input
+			{...rest}
 			className="loading__input"
 			placeholder="Вставьте ссылку"
-			onKeyDown={onKeyDown}
 			onChange={onChangeTextInput}
-			value={value}
 		/>
 		<label htmlFor="upload" className="loading__label">Загрузить</label>
 		<input

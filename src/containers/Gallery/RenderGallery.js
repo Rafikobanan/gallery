@@ -1,6 +1,6 @@
 import React from 'react';
-import './Gallery.scss';
 import { TransitionGroup } from 'react-transition-group';
+import './Gallery.scss';
 
 const RenderGallery = ({images}) => (
 	<TransitionGroup className="gallery">

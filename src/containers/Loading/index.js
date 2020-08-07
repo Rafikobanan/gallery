@@ -1,10 +1,13 @@
 import React, { useContext, useState } from 'react';
-import RenderLoading from './RenderLoading';
+
 import { Context } from '../../context/context';
-import { notify } from '../../utils/notify';
 import { ADD_SOME_PICTURES, ADD_PICTURE } from '../../reducer/types';
 
-function Loading() {
+import RenderLoading from './RenderLoading';
+
+import { notify } from '../../utils';
+
+const Loading = () => {
 	const {dispatch} = useContext(Context);
 	const [value, setValue] = useState('');
 

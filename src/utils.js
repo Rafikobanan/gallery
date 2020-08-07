@@ -1,6 +1,19 @@
-export const preventDefaults = (e) => {
-	e.preventDefault();
-	e.stopPropagation();
+import { toast } from 'react-toastify';
+
+export const id = () => {
+	return '_' + Math.random().toString(36).substr(2, 9);
+};
+
+export const notify = (text) => {
+	toast.error(text, {
+		position: 'top-right',
+		autoClose: 3000,
+		hideProgressBar: false,
+		closeOnClick: true,
+		pauseOnHover: true,
+		draggable: true,
+		progress: undefined,
+	});
 };
 
 export const handleDrop = (e, onloadend = null, onerror = null) => {

@@ -6,20 +6,17 @@ import {
 	REMOVE_BIG_IMAGE_URL,
 	SET_BIG_IMAGE_URL
 } from "./types";
-import { id } from "../utils/id";
+import { id } from "../utils";
 
 export default function(state, action) {
-	let {images} = state;
-
 	switch (action.type) {
 		case ADD_SOME_PICTURES:
-			const arr = action.payload;
-
-			for (let i = 0; i < arr.length; i++) {
-				arr[i].id = id();
-				arr[i].width = arr[i].width || null;
-				arr[i].height = arr[i].height || null;
-			}
+			const arr = action.payload.map((item) => ({
+				...item,
+				id: id(),
+				width: item.width || null,
+				height: item.height || null
+			}));
 
 			return {
 				...state,
@@ -34,19 +31,15 @@ export default function(state, action) {
 				url: action.payload.url,
 			};
 
-			images.push(imageObj);
-
 			return {
 				...state,
-				images: [...images],
+				images: [...state.images, imageObj],
 			};
 
 		case REMOVE_IMAGE:
-			images = state.images.filter((item) => item.id !== action.payload);
-
 			return {
 				...state,
-				images
+				images: state.images.filter((item) => item.id !== action.payload)
 			};
 
 		case SET_BIG_IMAGE_URL:
@@ -62,9 +55,13 @@ export default function(state, action) {
 			};
 
 		case ADD_PICTURE_SIZE:
-			const {index, width, height} = action.payload;
-			images[index].width = width;
-			images[index].height = height;
+			const {id: imageId, width, height} = action.payload;
+			const images = [...state.images];
+
+			const image = images.find((image) => image.id === imageId);
+
+			image.width = width;
+			image.height = height;
 
 			return {
 				...state,

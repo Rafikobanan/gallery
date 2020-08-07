@@ -1,6 +1,6 @@
 import {useRef, useEffect} from 'react';
 
-function useEventListener(eventName, handler, element = window) {
+const useEventListener = (eventName, handler, element = window) => {
   const savedHandler = useRef();
 
   useEffect(() => {
